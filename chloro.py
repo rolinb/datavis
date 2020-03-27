@@ -12,12 +12,11 @@ fig = go.Figure(data=go.Choropleth(
     reversescale=True,
     marker_line_color='darkgray',
     marker_line_width=0.5,
-    colorbar_tickprefix = '$',
-    colorbar_title = 'GDP<br>Billions US$',
+    colorbar_title = 'Happiness Score',
 ))
 
 fig.update_layout(
-    title_text='2014 Global GDP',
+    title_text='2019 Happiness Scores',
     geo=dict(
         showframe=False,
         showcoastlines=False,
