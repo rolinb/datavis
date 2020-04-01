@@ -25,7 +25,6 @@ fig.update_layout(
     
 )
 
-
 import dash
 import dash_core_components as dcc
 import dash_html_components as html
@@ -39,9 +38,11 @@ app.layout = html.Div([
             #This order needs to match the arrays below 
             {'label': 'Happiness Rank', 'value':0},
             {'label': 'GDP Log', 'value':1},
-            {'label': 'Freedom', 'value':2},
-            {'label': 'Generosity', 'value':3},
-            {'label': 'Social Support', 'value':4},
+            {'label': 'Social Support', 'value':2},
+            {'label': 'Life Expectancy', 'value':3},
+            {'label': 'Generosity', 'value':4},
+            {'label': 'Perception of Corruption', 'value':5},
+            {'label': 'Freedom', 'value':6},
         ],
         value=0,
         id='radio-buttons-left'
@@ -53,9 +54,11 @@ app.layout = html.Div([
         options=[
             {'label': 'Happiness Rank', 'value':0},
             {'label': 'GDP Log', 'value':1},
-            {'label': 'Freedom', 'value':2},
-            {'label': 'Generosity', 'value':3},
-            {'label': 'Social Support', 'value':4},
+            {'label': 'Social Support', 'value':2},
+            {'label': 'Life Expectancy', 'value':3},
+            {'label': 'Generosity', 'value':4},
+            {'label': 'Perception of Corruption', 'value':5},
+            {'label': 'Freedom', 'value':6},
         ],
         value=0,
         id='radio-buttons'
@@ -74,11 +77,13 @@ def update_figure(category):
 
     #this array is what needs to match
     categories = ([
-        {'title':'2018 World Happiness Score', 'color': 'blues', 'data':'Happiness score'},
-        {'title': '2018 GDP per capita', 'color': 'icefire', 'data':'Log GDP per capita'},
-        {'title':'2018 World Happiness Score', 'color': 'blues', 'data':'Happiness score'},
-        {'title': '2018 GDP per capita', 'color': 'icefire', 'data':'Log GDP per capita'},
-        {'title':'2018 World Happiness Score', 'color': 'blues', 'data':'Happiness score'},
+        {'title':'2018 World Happiness Score', 'color': 'blues_r', 'data':'Happiness score'},
+        {'title': '2018 GDP per Capita', 'color': 'ice', 'data':'GDP per capita'},
+        {'title':'2018 Social Support', 'color': 'twilight', 'data':'Social support'},
+        {'title': '2018 Life Expectancy', 'color': 'algae', 'data':'Healthy life expectancy at birth'},
+        {'title':'2018 Generosity', 'color': 'purpor', 'data':'Generosity'},
+        {'title':'2018 Perception of Corruption', 'color': 'jet', 'data':'Perceptions of corruption'},
+        {'title':'2018 Freedom', 'color': 'jet', 'data':'Freedom to make life choices'},
     
     ])
     fig = go.Figure(data=go.Choropleth(
@@ -112,11 +117,13 @@ def update_figure(category):
 def update_figure(category):  
 
     categories = ([
-        {'title':'2018 World Happiness Score', 'color': 'blues', 'data':'Happiness score'},
-        {'title': '2018 GDP per capita', 'color': 'icefire', 'data':'Log GDP per capita'},
-        {'title':'2018 World Happiness Score', 'color': 'blues', 'data':'Happiness score'},
-        {'title': '2018 GDP per capita', 'color': 'icefire', 'data':'Log GDP per capita'},
-        {'title':'2018 World Happiness Score', 'color': 'blues', 'data':'Happiness score'},
+        {'title':'2018 World Happiness Score', 'color': 'blues_r', 'data':'Happiness score'},
+        {'title': '2018 GDP per Capita', 'color': 'ice', 'data':'GDP per capita'},
+        {'title':'2018 Social Support', 'color': 'twilight', 'data':'Social support'},
+        {'title': '2018 Life Expectancy', 'color': 'algae', 'data':'Healthy life expectancy at birth'},
+        {'title':'2018 Generosity', 'color': 'purpor', 'data':'Generosity'},
+        {'title':'2018 Perception of Corruption', 'color': 'jet', 'data':'Perceptions of corruption'},
+        {'title':'2018 Freedom', 'color': 'jet', 'data':'Freedom to make life choices'},
     
     ])
     fig = go.Figure(data=go.Choropleth(
@@ -140,9 +147,6 @@ def update_figure(category):
         ),
     )
     return fig
-
-
-
 
 
 app.run_server(debug=True, dev_tools_hot_reload=True, use_reloader=False,)
