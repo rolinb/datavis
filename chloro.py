@@ -33,7 +33,23 @@ from dash.dependencies import Input, Output
 
 app = dash.Dash()
 app.layout = html.Div([
-     dcc.RadioItems(
+    html.Div([
+        dcc.Dropdown(
+        options=[
+            #This order needs to match the arrays below 
+            {'label': 'Happiness Rank', 'value':0},
+            {'label': 'GDP Log', 'value':1},
+            {'label': 'Freedom', 'value':2},
+            {'label': 'Generosity', 'value':3},
+            {'label': 'Social Support', 'value':4},
+        ],
+        value=0,
+        id='radio-buttons-left'
+        ),
+        dcc.Graph(id='the_graph_left'),
+    ], className="left", style={'width': '49%', 'display': 'inline-block'}),
+    html.Div([
+        dcc.Dropdown(
         options=[
             {'label': 'Happiness Rank', 'value':0},
             {'label': 'GDP Log', 'value':1},
@@ -43,15 +59,54 @@ app.layout = html.Div([
         ],
         value=0,
         id='radio-buttons'
-    ),
-    dcc.Graph(id='the_graph'),
-   
+        ),
+        dcc.Graph(id='the_graph'),
+    ],className="right", style={'width': '49%', 'display': 'inline-block'}) 
 ])
 
 
 @app.callback(
     Output(component_id='the_graph', component_property='figure'), 
     [Input('radio-buttons', 'value')]
+)
+
+def update_figure(category):  
+
+    #this array is what needs to match
+    categories = ([
+        {'title':'2018 World Happiness Score', 'color': 'blues', 'data':'Happiness score'},
+        {'title': '2018 GDP per capita', 'color': 'icefire', 'data':'Log GDP per capita'},
+        {'title':'2018 World Happiness Score', 'color': 'blues', 'data':'Happiness score'},
+        {'title': '2018 GDP per capita', 'color': 'icefire', 'data':'Log GDP per capita'},
+        {'title':'2018 World Happiness Score', 'color': 'blues', 'data':'Happiness score'},
+    
+    ])
+    fig = go.Figure(data=go.Choropleth(
+        locations = df['CODE'],
+        text = df['Country'],
+        colorscale = categories[category]['color'],
+        autocolorscale=False,
+        marker_line_color='darkgray',
+        marker_line_width=0.5,
+        z = df[categories[category]['data']],
+        reversescale=True,
+        colorbar_title = categories[category]['title'],
+        ))
+
+    fig.update_layout(
+        title_text=categories[category]['title'],
+        geo=dict(
+            showframe=False,
+            showcoastlines=False,
+            projection_type='equirectangular'
+        ),
+    )
+    return fig
+
+
+@app.callback(
+    Output(component_id='the_graph_left', component_property='figure'), 
+    [Input('radio-buttons-left', 'value')]
 )
 
 def update_figure(category):  
@@ -85,6 +140,8 @@ def update_figure(category):
         ),
     )
     return fig
+
+
 
 
 
