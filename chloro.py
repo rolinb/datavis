@@ -149,4 +149,4 @@ def update_figure(category):
     return fig
 
 
-app.run_server(debug=True, dev_tools_hot_reload=True, use_reloader=False,)
+app.run_server(debug=True, dev_tools_hot_reload=True, dev_tools_hot_reload_interval=500,)
