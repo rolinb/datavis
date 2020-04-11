@@ -37,7 +37,7 @@ app.layout = html.Div([
         options=[
             #This order needs to match the arrays below 
             {'label': 'Happiness Rank', 'value':0},
-            {'label': 'GDP Log', 'value':1},
+            {'label': 'Log GDP per capita', 'value':1},
             {'label': 'Social Support', 'value':2},
             {'label': 'Life Expectancy', 'value':3},
             {'label': 'Generosity', 'value':4},
@@ -53,7 +53,7 @@ app.layout = html.Div([
         dcc.Dropdown(
         options=[
             {'label': 'Happiness Rank', 'value':0},
-            {'label': 'GDP Log', 'value':1},
+            {'label': 'Log GDP per capita', 'value':1},
             {'label': 'Social Support', 'value':2},
             {'label': 'Life Expectancy', 'value':3},
             {'label': 'Generosity', 'value':4},
@@ -78,11 +78,11 @@ def update_figure(category):
     #this array is what needs to match
     categories = ([
         {'title':'2018 World Happiness Score', 'color': 'blues_r', 'data':'Happiness score'},
-        {'title': '2018 GDP per Capita', 'color': 'ice', 'data':'GDP per capita'},
+        {'title': '2018 Log GDP per capita', 'color': 'ice', 'data':'Log GDP per capita'},
         {'title':'2018 Social Support', 'color': 'twilight', 'data':'Social support'},
-        {'title': '2018 Life Expectancy', 'color': 'algae', 'data':'Healthy life expectancy at birth'},
+        {'title': '2018 Life Expectancy', 'color': 'algae_r', 'data':'Healthy life expectancy at birth'},
         {'title':'2018 Generosity', 'color': 'purpor', 'data':'Generosity'},
-        {'title':'2018 Perception of Corruption', 'color': 'jet', 'data':'Perceptions of corruption'},
+        {'title':'2018 Perception of Corruption', 'color': 'jet_r', 'data':'Perceptions of corruption'},
         {'title':'2018 Freedom', 'color': 'jet', 'data':'Freedom to make life choices'},
     
     ])
@@ -118,11 +118,11 @@ def update_figure(category):
 
     categories = ([
         {'title':'2018 World Happiness Score', 'color': 'blues_r', 'data':'Happiness score'},
-        {'title': '2018 GDP per Capita', 'color': 'ice', 'data':'GDP per capita'},
+        {'title': '2018 Log GDP per capita', 'color': 'ice', 'data':'Log GDP per capita'},
         {'title':'2018 Social Support', 'color': 'twilight', 'data':'Social support'},
-        {'title': '2018 Life Expectancy', 'color': 'algae', 'data':'Healthy life expectancy at birth'},
+        {'title': '2018 Life Expectancy', 'color': 'algae_r', 'data':'Healthy life expectancy at birth'},
         {'title':'2018 Generosity', 'color': 'purpor', 'data':'Generosity'},
-        {'title':'2018 Perception of Corruption', 'color': 'jet', 'data':'Perceptions of corruption'},
+        {'title':'2018 Perception of Corruption', 'color': 'jet_r', 'data':'Perceptions of corruption'},
         {'title':'2018 Freedom', 'color': 'jet', 'data':'Freedom to make life choices'},
     
     ])
