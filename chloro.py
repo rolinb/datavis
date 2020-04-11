@@ -53,6 +53,7 @@ app.layout = html.Div([
             {'label': 'Generosity', 'value':4},
             {'label': 'Perception of Corruption', 'value':5},
             {'label': 'Freedom', 'value':6},
+            {'label': 'Dystopia (1.88) + residual', 'value':7},
         ],
         value=0,
         id='radio-buttons-left'
@@ -69,6 +70,7 @@ app.layout = html.Div([
             {'label': 'Generosity', 'value':4},
             {'label': 'Perception of Corruption', 'value':5},
             {'label': 'Freedom', 'value':6},
+            {'label': 'Dystopia (1.88) + residual', 'value':7},
         ],
         value=0,
         id='radio-buttons'
@@ -110,6 +112,7 @@ def update_figure(category):
         {'title':'2018 Generosity', 'color': 'purpor', 'data':'Generosity'},
         {'title':'2018 Perception of Corruption', 'color': 'jet_r', 'data':'Perceptions of corruption'},
         {'title':'2018 Freedom', 'color': 'jet', 'data':'Freedom to make life choices'},
+        {'title':'2018 Dystopia', 'color': 'jet', 'data':'Dystopia (1.88) + residual'},
     
     ])
     fig = go.Figure(data=go.Choropleth(
@@ -150,6 +153,7 @@ def update_figure(category):
         {'title':'2018 Generosity', 'color': 'purpor', 'data':'Generosity'},
         {'title':'2018 Perception of Corruption', 'color': 'jet_r', 'data':'Perceptions of corruption'},
         {'title':'2018 Freedom', 'color': 'jet', 'data':'Freedom to make life choices'},
+        {'title':'2018 Dystopia', 'color': 'jet', 'data':'Dystopia (1.88) + residual'},
     
     ])
     fig = go.Figure(data=go.Choropleth(
