@@ -183,7 +183,7 @@ def update_figure(category):
 
 def update_figure(countries, bars):  
     #this array is what needs to match
-    
+    countries.sort()
     
     fig = go.Figure(data=[         
     ])
@@ -194,8 +194,6 @@ def update_figure(countries, bars):
 
 
     return fig
-
-
 
 
 app.run_server(debug=True, dev_tools_hot_reload=True, dev_tools_hot_reload_interval=500,)
