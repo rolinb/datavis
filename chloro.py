@@ -1,6 +1,11 @@
 import plotly.graph_objects as go
 import pandas as pd
 
+bars = ['Happiness score', 'Dystopia (1.88) + residual', 'Explained by: GDP per capita',
+    'Explained by: Social support',	'Explained by: Healthy life expectancy', 
+    'Explained by: Freedom to make life choices',	'Explained by: Generosity',
+    'Explained by: Perceptions of corruption']
+
 #df2 = pd.read_csv('https://raw.githubusercontent.com/plotly/datasets/master/2014_world_gdp_with_codes.csv')
 df = pd.read_csv('moredata.csv', sep='\t', header=0)
 fig = go.Figure(data=go.Choropleth(
@@ -14,6 +19,9 @@ fig = go.Figure(data=go.Choropleth(
     marker_line_width=0.5,
     colorbar_title = 'Happiness Score',
 ))
+
+def show_barchart(trace, points, state):
+    app.logger.info("test")
 
 fig.update_layout(
     title_text='2019 Happiness Scores',
@@ -31,6 +39,8 @@ import dash_html_components as html
 from dash.dependencies import Input, Output
 
 app = dash.Dash()
+app.logger.info(df)
+
 app.layout = html.Div([
     html.Div([
         dcc.Dropdown(
@@ -64,7 +74,23 @@ app.layout = html.Div([
         id='radio-buttons'
         ),
         dcc.Graph(id='the_graph'),
-    ],className="right", style={'width': '49%', 'display': 'inline-block'}) 
+    ],className="right", style={'width': '49%', 'display': 'inline-block'}),
+    #start bar charts for countries
+    html.Div([
+        dcc.Dropdown(
+        options=[{'label': i, 'value': i} for i in df.Country],
+        value=0,
+        id='country-selector',
+        multi=True,
+        style={'width': '49%', 'display': 'inline-block'}),
+        dcc.Dropdown(
+        options=[{'label': i, 'value': i} for i in bars],
+        value=0,
+        id='bars-selector',
+        multi=True,
+        style={'width': '49%', 'display': 'inline-block'}),
+        dcc.Graph(id='country-graph'),
+    ]) 
 ])
 
 
@@ -74,8 +100,8 @@ app.layout = html.Div([
 )
 
 def update_figure(category):  
-
     #this array is what needs to match
+
     categories = ([
         {'title':'2018 World Happiness Score', 'color': 'blues_r', 'data':'Happiness score'},
         {'title': '2018 GDP per Capita', 'color': 'ice', 'data':'GDP per capita'},
@@ -97,7 +123,7 @@ def update_figure(category):
         reversescale=True,
         colorbar_title = categories[category]['title'],
         ))
-
+    app.logger.info("in update")
     fig.update_layout(
         title_text=categories[category]['title'],
         geo=dict(
@@ -147,6 +173,28 @@ def update_figure(category):
         ),
     )
     return fig
+
+#this is for the country graph
+@app.callback(
+    Output(component_id='country-graph', component_property='figure'), 
+    [Input('country-selector', 'value'), Input('bars-selector', 'value')]
+)
+
+def update_figure(countries, bars):  
+    #this array is what needs to match
+    
+    
+    fig = go.Figure(data=[         
+    ])
+    for bar in bars:
+        fig.add_bar(name=bar, x=countries, y=df.loc[df['Country'].isin(countries)][bar]),
+    # Change the bar mode
+    fig.update_layout(barmode='group')
+
+
+    return fig
+
+
 
 
 app.run_server(debug=True, dev_tools_hot_reload=True, dev_tools_hot_reload_interval=500,)
