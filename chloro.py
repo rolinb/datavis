@@ -20,9 +20,6 @@ fig = go.Figure(data=go.Choropleth(
     colorbar_title = 'Happiness Score',
 ))
 
-def show_barchart(trace, points, state):
-    app.logger.info("test")
-
 fig.update_layout(
     title_text='2019 Happiness Scores',
     geo=dict(
@@ -79,13 +76,13 @@ app.layout = html.Div([
     html.Div([
         dcc.Dropdown(
         options=[{'label': i, 'value': i} for i in df.Country],
-        value=0,
+        value=['Canada'],
         id='country-selector',
         multi=True,
         style={'width': '49%', 'display': 'inline-block'}),
         dcc.Dropdown(
         options=[{'label': i, 'value': i} for i in bars],
-        value=0,
+        value=['Happiness score'],
         id='bars-selector',
         multi=True,
         style={'width': '49%', 'display': 'inline-block'}),
