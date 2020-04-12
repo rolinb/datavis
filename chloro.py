@@ -103,13 +103,13 @@ def update_figure(category):
 
     categories = ([
         {'title':'2018 World Happiness Score', 'color': 'blues_r', 'data':'Happiness score'},
-        {'title': '2018 Log GDP per capita', 'color': 'ice', 'data':'Log GDP per capita'},
-        {'title':'2018 Social Support', 'color': 'twilight', 'data':'Social support'},
-        {'title': '2018 Life Expectancy', 'color': 'algae_r', 'data':'Healthy life expectancy at birth'},
-        {'title':'2018 Generosity', 'color': 'purpor', 'data':'Generosity'},
-        {'title':'2018 Perception of Corruption', 'color': 'jet_r', 'data':'Perceptions of corruption'},
-        {'title':'2018 Freedom', 'color': 'jet', 'data':'Freedom to make life choices'},
-        {'title':'2018 Dystopia', 'color': 'jet', 'data':'Dystopia (1.88) + residual'},
+        {'title': '2018 Log GDP per capita', 'color': 'greens', 'data':'Log GDP per capita'},
+        {'title':'2018 Social Support', 'color': 'purples', 'data':'Social support'},
+        {'title': '2018 Life Expectancy', 'color': 'oranges', 'data':'Healthy life expectancy at birth'},
+        {'title':'2018 Generosity', 'color': 'blues', 'data':'Generosity'},
+        {'title':'2018 Perception of Corruption', 'color': 'reds', 'data':'Perceptions of corruption'},
+        {'title':'2018 Freedom', 'color': 'pinkyl', 'data':'Freedom to make life choices'},
+        {'title':'2018 Dystopia', 'color': 'greys', 'data':'Dystopia (1.88) + residual'},
     
     ])
     fig = go.Figure(data=go.Choropleth(
@@ -144,13 +144,13 @@ def update_figure(category):
 
     categories = ([
         {'title':'2018 World Happiness Score', 'color': 'blues_r', 'data':'Happiness score'},
-        {'title': '2018 Log GDP per capita', 'color': 'ice', 'data':'Log GDP per capita'},
-        {'title':'2018 Social Support', 'color': 'twilight', 'data':'Social support'},
-        {'title': '2018 Life Expectancy', 'color': 'algae_r', 'data':'Healthy life expectancy at birth'},
-        {'title':'2018 Generosity', 'color': 'purpor', 'data':'Generosity'},
-        {'title':'2018 Perception of Corruption', 'color': 'jet_r', 'data':'Perceptions of corruption'},
-        {'title':'2018 Freedom', 'color': 'jet', 'data':'Freedom to make life choices'},
-        {'title':'2018 Dystopia', 'color': 'jet', 'data':'Dystopia (1.88) + residual'},
+        {'title': '2018 Log GDP per capita', 'color': 'greens', 'data':'Log GDP per capita'},
+        {'title':'2018 Social Support', 'color': 'purples', 'data':'Social support'},
+        {'title': '2018 Life Expectancy', 'color': 'oranges', 'data':'Healthy life expectancy at birth'},
+        {'title':'2018 Generosity', 'color': 'blues', 'data':'Generosity'},
+        {'title':'2018 Perception of Corruption', 'color': 'reds', 'data':'Perceptions of corruption'},
+        {'title':'2018 Freedom', 'color': 'pinkyl', 'data':'Freedom to make life choices'},
+        {'title':'2018 Dystopia', 'color': 'greys', 'data':'Dystopia (1.88) + residual'},
     
     ])
     fig = go.Figure(data=go.Choropleth(
@@ -182,13 +182,25 @@ def update_figure(category):
 )
 
 def update_figure(countries, bars):  
-    #this array is what needs to match
     countries.sort()
+
+
+    colors = {
+    'Happiness score' : 'rgb(237, 239, 93)', 
+    'Dystopia (1.88) + residual': 'rgb(37, 37, 37)' , 
+    'Explained by: GDP per capita': 'rgb(0, 68, 27)',
+    'Explained by: Social support': 'rgb(63, 0, 125)',	
+    'Explained by: Healthy life expectancy': 'rgb(127,39,4)', 
+    'Explained by: Freedom to make life choices': 'rgb(241, 109, 122)',	
+    'Explained by: Generosity': 'rgb(8,81,156)',
+    'Explained by: Perceptions of corruption' : 'rgb(165, 15, 21)'
+    }
+
     
     fig = go.Figure(data=[         
     ])
     for bar in bars:
-        fig.add_bar(name=bar, x=countries, y=df.loc[df['Country'].isin(countries)][bar]),
+        fig.add_bar(name=bar, x=countries, y=df.loc[df['Country'].isin(countries)][bar], marker_color=colors[bar]),
     # Change the bar mode
     fig.update_layout(barmode='group')
 
